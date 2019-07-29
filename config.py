@@ -32,9 +32,9 @@ BLYNK_URL = 'http://blynk-cloud.com/'
 # PubNub configuration
 ############
 
-USEPUBNUB = False 
-Pubnub_Publish_Key = "pub-c-xxxxxx"
-Pubnub_Subscribe_Key = "sub-c-xxxxxx"
+USEPUBNUB = True
+Pubnub_Publish_Key = "pub-c-17049063-cb72-4826-b7d4-8d8dd0b5517d"
+Pubnub_Subscribe_Key = "sub-c-b01c04fe-a6a3-11e9-9764-faf49bb54dbb"
 
 
 ############
