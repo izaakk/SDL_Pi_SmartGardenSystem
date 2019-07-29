@@ -194,6 +194,16 @@ try:
         print 'Temp             = {0:0.3f} deg C'.format(degrees)
         print 'Humidity         = {0:0.2f} %'.format(humidity)
 
+        # Creating M2X Client and device
+
+        client = M2XClient(key='3e296370312002710e5019d6b4a4b512')
+        device = client.device('cb3eed668dcb1cdf4e3b42df2c4fa00e')
+        temperature_stream=device.streams()[0]
+        
+        # Adding value to stream.
+
+        temperature_stream.add_value(degrees)
+
 except KeyboardInterrupt:  
     	# here you put any code you want to run before the program   
     	# exits when you press CTRL+C  
