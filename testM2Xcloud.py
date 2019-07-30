@@ -186,6 +186,17 @@ def returnStatusLine(device, state):
 
 try:  
 
+        
+        # Creating M2X Client and device
+
+        client = M2XClient(key='3e296370312002710e5019d6b4a4b512')
+        device = client.device('cb3eed668dcb1cdf4e3b42df2c4fa00e')
+        temperature_stream=device.streams()[0]
+        humidity_stream = device.streams()[1]
+        visible_light_strean = device.streams()[2]
+        ir_light_strean = device.streams()[3]
+        uv_light_stream = device.streams()[4]
+
         # read temp humidity
 
         degrees= hdc1000.readTemperature()
@@ -194,14 +205,34 @@ try:
         print 'Temp             = {0:0.3f} deg C'.format(degrees)
         print 'Humidity         = {0:0.2f} %'.format(humidity)
 
-        # Creating M2X Client and device
+        if (config.OLED_Present):
+                Scroll_SSD1306.addLineOLED(display,  ("Temp = \t%0.2f C")%(degrees))
+                Scroll_SSD1306.addLineOLED(display,  ("Humidity =\t%0.2f %%")%(humidity))
 
-        client = M2XClient(key='3e296370312002710e5019d6b4a4b512')
-        device = client.device('cb3eed668dcb1cdf4e3b42df2c4fa00e')
-        temperature_stream=device.streams()[0]
-        humidity_stream = device.streams()[1]
-        
-        # Adding value to stream.
+        print "----------------- "
+        if (config.Sunlight_Present == True):
+                            print " Sunlight Vi/IR/UV Sensor"
+        else:
+                            print " Sunlight Vi/IR/UV Sensor Not Present"
+        print "----------------- "
+
+        #Read sun light
+
+        if (config.Sunlight_Present == True):
+                ################
+                SunlightVisible = Sunlight_Sensor.readVisible()
+                SunlightIR = Sunlight_Sensor.readIR()
+                SunlightUV = Sunlight_Sensor.readUV()
+                SunlightUVIndex = SunlightUV / 100.0
+                print 'Sunlight Visible:  ' + str(SunlightVisible)
+                print 'Sunlight IR:       ' + str(SunlightIR)
+                print 'Sunlight UV Index: ' + str(SunlightUVIndex)
+                ################
+
+        	if (config.OLED_Present):
+                	Scroll_SSD1306.addLineOLED(display,  ("Sunlight = \t%0.2f Lum")%(SunlightVisible))
+
+        # Adding value to streams.
 
         temperature_stream.add_value(degrees)
         humidity_stream.add_value(humidity)
