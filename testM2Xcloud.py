@@ -236,6 +236,9 @@ try:
 
         temperature_stream.add_value(degrees)
         humidity_stream.add_value(humidity)
+        visible_light_strean.add_value(SunlightVisible)
+        ir_light_strean.add_value(SunlightIR)
+        uv_light_stream.add_value(SunlightUVIndex)
 
 except KeyboardInterrupt:  
     	# here you put any code you want to run before the program   
