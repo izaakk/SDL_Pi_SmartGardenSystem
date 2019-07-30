@@ -209,8 +209,8 @@ try:
         visible_light_strean = device.streams()[2]
         ir_light_strean = device.streams()[3]
         uv_light_stream = device.streams()[4]
-        soil_moisture_stream = device.streams[5]
-        water_tank_stream = device.streams[6]
+        soil_moisture_stream = device.streams()[5]
+        water_tank_stream = device.streams()[6]
 
         # read temp humidity
 
