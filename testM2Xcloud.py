@@ -232,6 +232,35 @@ try:
         	if (config.OLED_Present):
                 	Scroll_SSD1306.addLineOLED(display,  ("Sunlight = \t%0.2f Lum")%(SunlightVisible))
 
+        
+        #moisture humidity and air quality
+        if (config.ADS1115_Present):
+            GPIO.output(config.moisturePower, GPIO.HIGH)
+            Moisture_Humidity   = ads1115.readADCSingleEnded(config.moistureADPin, gain, sps)/7 # AIN0 wired to AirQuality Sensor
+            GPIO.output(config.moisturePower, GPIO.LOW)
+
+            print Moisture_Humidity
+	    Moisture_Humidity = Moisture_Humidity / 7.0
+            if (Moisture_Humidity >100): 
+                Moisture_Humidity = 100;
+            print "Moisture Humidity = %0.2f" % (Moisture_Humidity)
+            print"------------------------------"
+
+            sensor_value =  AirQualitySensorLibrary.readAirQualitySensor(ads1115)
+
+            sensorList = AirQualitySensorLibrary.interpretAirQualitySensor(sensor_value)
+            print "Sensor Value=%i --> %s  | %i"% (sensor_value, sensorList[0], sensorList[1])
+        
+        else:
+                            print " Humidity and air quality Not Present"
+        print "----------------- "
+                 
+	if (config.UltrasonicLevel_Present):
+		print "Ultrasonic Level"
+		ultrasonicRanger.getAndPrint()
+
+
+
         # Adding value to streams.
 
         temperature_stream.add_value(degrees)
