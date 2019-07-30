@@ -209,6 +209,8 @@ try:
         visible_light_strean = device.streams()[2]
         ir_light_strean = device.streams()[3]
         uv_light_stream = device.streams()[4]
+        soil_moisture_stream = device.streams[5]
+        water_tank_stream = device.streams[6]
 
         # read temp humidity
 
@@ -282,6 +284,8 @@ try:
         visible_light_strean.add_value(SunlightVisible)
         ir_light_strean.add_value(SunlightIR)
         uv_light_stream.add_value(SunlightUVIndex)
+        soil_moisture_stream.add_value(Moisture_Humidity)
+        water_tank_stream.add_value(water_tanklevel)
 
 except KeyboardInterrupt:  
     	# here you put any code you want to run before the program   
