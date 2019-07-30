@@ -269,8 +269,8 @@ try:
         print "----------------- "
                  
 	if (config.UltrasonicLevel_Present):
-		print "Ultrasonic Level"
-		ultrasonicRanger.getAndPrint()
+		print "Ultrasonic Level " + water_tanklevel + " cm"
+		water_tanklevel=ultrasonicRanger.measurementInCM()
 
 
 
