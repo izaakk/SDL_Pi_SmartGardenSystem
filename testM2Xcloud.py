@@ -183,6 +183,19 @@ def returnStatusLine(device, state):
                 returnString = returnString + ":   \t\tNot Present"
         return returnString
 
+if (config.OLED_Present):
+      Scroll_SSD1306.addLineOLED(display,  ("    Welcome to "))
+      Scroll_SSD1306.addLineOLED(display,  ("   Smart Garden "))
+
+
+############
+# Setup Moisture Pin for GrovePowerSave
+############
+GPIO.setup(config.moisturePower,GPIO.OUT)
+GPIO.output(config.moisturePower, GPIO.LOW)
+
+#
+
 
 try:  
 
