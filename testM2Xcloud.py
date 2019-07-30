@@ -270,7 +270,7 @@ try:
                  
 	if (config.UltrasonicLevel_Present):
                 water_tanklevel=ultrasonicRanger.measurementInCM()
-		print "Ultrasonic Level " + water_tanklevel + " cm"
+		print "Ultrasonic Level " + str(water_tanklevel) + " cm"
 		
 
 
